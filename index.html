@@ -439,46 +439,85 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-5 bg-light reveal">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
-        <div>
-          <p class="section-title text-uppercase fw-bold text-primary mb-1">Contact</p>
-          <h2 class="fw-bold mb-0">Let’s talk</h2>
-        </div>
+<section id="contact" class="page-section reveal">
+  <div class="container px-5">
+    <h2 class="text-center text-uppercase text-secondary mb-3">
+      Contact Me
+    </h2>
+
+    <div class="divider-accent mx-auto mb-4"></div>
+
+    <p class="text-center mb-5">
+      Interested in consulting, collaboration, or opportunities?
+      Send a message and I’ll get back to you.
+    </p>
+
+    <form
+      action="https://formspree.io/f/xvzzrrno"
+      method="POST"
+      class="mx-auto"
+      style="max-width: 600px;"
+    >
+      <!-- Name -->
+      <div class="form-group mb-3">
+        <label for="name">Name</label>
+        <input
+          class="form-control"
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Your name"
+          required
+        />
       </div>
 
-      <div class="row g-4">
-        <div class="col-lg-7">
-          <div class="card shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <h3 class="h5 fw-bold">Fastest way to reach me</h3>
-              <p class="small-muted">GitHub Pages can’t send form submissions by default, so this page uses a simple email link.</p>
-              <a class="btn btn-primary btn-lg" href="mailto:YOUR_EMAIL_HERE?subject=Project%20Inquiry%20—%20Data%20Engineering%20%2F%20Analytics">
-                <i class="fa-solid fa-paper-plane me-2"></i>Email me
-              </a>
-              <p class="small-muted mt-3 mb-0">Replace <code>YOUR_EMAIL_HERE</code> with your email address before publishing.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="card shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <h3 class="h5 fw-bold">Engagement options</h3>
-              <ul class="mb-0 small-muted">
-                <li class="mb-2"><strong>Consulting:</strong> discovery → build → handover</li>
-                <li class="mb-2"><strong>Migration:</strong> assessment → phased move → cutover</li>
-                <li class="mb-2"><strong>Stabilisation:</strong> data quality + performance improvements</li>
-                <li><strong>Analytics:</strong> datasets → dashboards → insight narrative</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input
+          class="form-control"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="your@email.com"
+          required
+        />
       </div>
 
-      <footer class="pt-4 small-muted">© <span id="yr"></span> Asimiyu Musa</footer>
-    </div>
-  </section>
+      <!-- Message -->
+      <div class="form-group mb-4">
+        <label for="message">Message</label>
+        <textarea
+          class="form-control"
+          id="message"
+          name="message"
+          rows="4"
+          placeholder="How can I help you?"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Anti-spam honeypot -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <!-- Optional subject -->
+      <input type="hidden" name="_subject" value="New portfolio contact message">
+
+      <!-- Optional redirect (keeps user on page) -->
+      <input
+        type="hidden"
+        name="_redirect"
+        value="https://asimiyu-musa.github.io/project_portfolio/"
+      >
+
+      <!-- Submit -->
+      <button class="btn btn-primary btn-xl w-100" type="submit">
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
 
   <!-- Modals -->
   <div class="modal fade" id="p1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Enterprise Data Governance & NDPA Compliance Framework</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
