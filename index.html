@@ -12,57 +12,101 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
   <style>
-    :root{ --brand:#0d6efd; }
-    body{ scroll-behavior:smooth; }
-    .navbar{ backdrop-filter: blur(8px); }
-    .hero{ background: radial-gradient(1200px 600px at 20% 10%, rgba(13,110,253,.22), transparent 70%),
-                     radial-gradient(900px 500px at 80% 30%, rgba(13,110,253,.14), transparent 65%);
-           padding: 8rem 0 5rem; }
-    .hero h1{ letter-spacing: -0.02em; }
-    .pill{ border: 1px solid rgba(0,0,0,.1); border-radius: 999px; padding:.45rem .8rem; font-size:.9rem; }
-    .section-title{ letter-spacing: .08em; }
-    .card{ border-radius: 1.25rem; }
-    .shadow-soft{ box-shadow: 0 12px 34px rgba(0,0,0,.08); }
-    .badge-tech{ border:1px solid rgba(0,0,0,.12); background:#fff; color:#111; font-weight:600; }
-    .cta{ background: linear-gradient(135deg, rgba(13,110,253,.12), rgba(13,110,253,.02)); }
-    .small-muted{ color: rgba(0,0,0,.65); }
-    .project-meta{ font-size:.92rem; }
-    .modal-content{ border-radius: 1.25rem; }
-    .img-diagram{ border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; }
-  </style>
-
-<!-- Custom brand + micro-animations (Freelancer palette) -->
-<style>
+  /* Brand palette (matches original template) */
   :root{
-    --brand-primary:#1ABC9C;
-    --brand-secondary:#2C3E50;
-    --brand-light:#f8f9fa;
-    --brand-muted:#6c757d;
+    --brand-primary:#1ABC9C;   /* teal */
+    --brand-secondary:#2C3E50; /* navy */
+    --brand-bg:#F8F9FA;
+    --brand-text:#0f172a;
+    --brand-muted:rgba(15, 23, 42, .72);
+    --brand-border:rgba(44, 62, 80, .12);
+    --shadow-soft: 0 14px 38px rgba(15,23,42,.10);
   }
+
   html{ scroll-behavior:smooth; }
-  .btn, .card, .navbar, a{ transition: all .25s ease; }
+  body{ color: var(--brand-text); }
+
+  /* Bootstrap overrides */
+  .text-primary{ color: var(--brand-primary) !important; }
+  .bg-primary{ background: var(--brand-primary) !important; }
+  .bg-secondary{ background: var(--brand-secondary) !important; }
+  .text-bg-primary{ background: var(--brand-primary) !important; }
+
   .btn-primary{
     background: var(--brand-primary) !important;
     border-color: var(--brand-primary) !important;
   }
-  .btn-primary:hover{
-    filter: brightness(0.95);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(44,62,80,.18);
-  }
   .btn-outline-primary{
     border-color: var(--brand-primary) !important;
     color: var(--brand-primary) !important;
+  }
+
+  /* Layout polish */
+  .navbar{ backdrop-filter: blur(10px); }
+  .navbar .nav-link{ color: rgba(15,23,42,.78); font-weight: 600; }
+  .navbar .nav-link:hover{ color: var(--brand-secondary); }
+  .navbar-brand{ letter-spacing: -0.01em; }
+
+  .hero{
+    background:
+      radial-gradient(1200px 600px at 20% 10%, rgba(26,188,156,.20), transparent 70%),
+      radial-gradient(900px 500px at 80% 30%, rgba(44,62,80,.10), transparent 65%);
+    padding: 8rem 0 5rem;
+  }
+  .hero h1{ letter-spacing: -0.02em; }
+
+  .pill{
+    border: 1px solid var(--brand-border);
+    border-radius: 999px;
+    padding:.45rem .85rem;
+    font-size:.9rem;
+    background: rgba(255,255,255,.75);
+  }
+  .section-title{ letter-spacing: .10em; }
+  .small-muted{ color: var(--brand-muted); }
+
+  .card{
+    border-radius: 1.25rem;
+    border: 1px solid rgba(15,23,42,.06);
+  }
+  .shadow-soft{ box-shadow: var(--shadow-soft); }
+  .badge-tech{
+    border:1px solid var(--brand-border);
+    background:#fff;
+    color:#111;
+    font-weight:600;
+  }
+  .cta{ background: linear-gradient(135deg, rgba(26,188,156,.12), rgba(44,62,80,.02)); }
+  .project-meta{ font-size:.92rem; }
+  .modal-content{ border-radius: 1.25rem; }
+  .img-diagram{ border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; }
+  .divider-accent{ height:3px; width:72px; background: var(--brand-primary); border-radius:999px; }
+
+  @media (max-width: 576px){
+    .hero{ padding: 7rem 0 4rem; }
+  }
+</style>
+
+<!-- Micro-interactions + reveal-on-scroll -->
+<style>
+  .btn, .card, .navbar, a{ transition: all .25s ease; }
+
+  .btn-primary:hover{
+    filter: brightness(0.97);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(44,62,80,.18);
   }
   .btn-outline-primary:hover{
     background: var(--brand-primary) !important;
     color: #fff !important;
     transform: translateY(-1px);
   }
+
   .hover-lift:hover{
     transform: translateY(-6px);
-    box-shadow: 0 18px 40px rgba(44,62,80,.18);
+    box-shadow: 0 20px 46px rgba(44,62,80,.18);
   }
+
   .reveal{
     opacity:0;
     transform: translateY(14px);
@@ -73,6 +117,7 @@
     opacity:1;
     transform: translateY(0);
   }
+
   a.link-accent{
     text-decoration:none;
     background-image: linear-gradient(var(--brand-primary), var(--brand-primary));
@@ -82,14 +127,117 @@
     transition: background-size .25s ease;
   }
   a.link-accent:hover{ background-size: 100% 2px; }
+  /* Services cards: per-card accent + icon chip + hover animation */
+.service-card{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15,23,42,.06);
+  border-radius: 1.25rem;
+}
+
+.service-card::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  height:5px;
+  width:100%;
+  background: var(--accent, var(--brand-primary));
+}
+
+.icon-chip{
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--accent, var(--brand-primary)) 14%, white);
+  border: 1px solid color-mix(in srgb, var(--accent, var(--brand-primary)) 25%, transparent);
+}
+
+.service-icon{
+  color: var(--accent, var(--brand-primary));
+  transform: translateZ(0);
+  transition: transform .25s ease;
+}
+
+.service-card:hover .service-icon{
+  transform: translateY(-2px) rotate(-6deg) scale(1.03);
+}
+
+.service-bullets{
+  margin: 0;
+  padding-left: 1.05rem;
+}
+
+.service-bullets li{
+  margin-bottom: .35rem;
+}
+/* Services: consistent teal accent + clickable cards */
+.service-card{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15,23,42,.06);
+  border-radius: 1.25rem;
+  cursor: pointer;
+}
+
+.service-card::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  height:5px;
+  width:100%;
+  background: var(--brand-primary);
+}
+
+.icon-chip{
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26,188,156,.14);
+  border: 1px solid rgba(26,188,156,.22);
+}
+
+.service-icon{
+  color: var(--brand-primary);
+  transform: translateZ(0);
+  transition: transform .25s ease;
+}
+
+.service-card:hover .service-icon{
+  transform: translateY(-2px) rotate(-6deg) scale(1.03);
+}
+
+.service-card:hover{
+  box-shadow: 0 20px 46px rgba(44,62,80,.16);
+  transform: translateY(-4px);
+}
+
+.service-short{
+  color: rgba(15, 23, 42, .72);
+}
+
+.service-modal-box{
+  background: rgba(26,188,156,.08);
+  border: 1px solid rgba(44,62,80,.10);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+
   :focus-visible{ outline: 3px solid rgba(26,188,156,.35); outline-offset: 3px; border-radius: 6px; }
+
 </style>
 
 </head>
 
 <body>
   <!-- Nav -->
-  <nav class="navbar navbar-expand-lg bg-white border-bottom fixed-top">
+  <nav class="navbar navbar-expand-lg bg-white border-bottom fixed-top" style="border-top:4px solid var(--brand-primary);">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#top">Asimiyu Musa</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,56 +295,130 @@
   </header>
 
   <!-- Services -->
-  <section id="services" class="py-5 reveal">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
-        <div>
-          <p class="section-title text-uppercase fw-bold text-primary mb-1">Services</p>
-          <h2 class="fw-bold mb-0">How I help organisations</h2>
+  <section id="services" class="page-section reveal">
+  <div class="container px-5">
+    <h2 class="text-center text-uppercase text-secondary mb-3 section-title">
+      Services
+    </h2>
+    <div class="divider-accent mx-auto mb-5"></div>
+
+    <div class="row g-4">
+
+      <!-- Data Platforms -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft service-card"
+             data-bs-toggle="modal" data-bs-target="#svcPlatforms">
+          <div class="card-body">
+            <div class="icon-chip mb-3">
+              <i class="fa-solid fa-database fa-lg service-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Data Platforms</h5>
+            <p class="service-short mb-0">
+              Scalable platforms for analytics, reporting, and operational decision support.
+            </p>
+          </div>
         </div>
-        <div class="small-muted">Engagements: advisory, build, migration, stabilisation, and analytics enablement.</div>
       </div>
 
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <div class="h4"><i class="fa-solid fa-diagram-project text-primary"></i></div>
-              <h3 class="h5 fw-bold">Data Platforms</h3>
-              <p class="small-muted mb-0">Design and build reliable data warehouses/lakes and analytics-ready datasets.</p>
+      <!-- Cloud Migration -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft service-card"
+             data-bs-toggle="modal" data-bs-target="#svcCloud">
+          <div class="card-body">
+            <div class="icon-chip mb-3">
+              <i class="fa-solid fa-cloud-arrow-up fa-lg service-icon"></i>
             </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <div class="h4"><i class="fa-solid fa-cloud-arrow-up text-primary"></i></div>
-              <h3 class="h5 fw-bold">Cloud Migration</h3>
-              <p class="small-muted mb-0">Phased migrations from on-prem to AWS/Azure/GCP with minimal downtime.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <div class="h4"><i class="fa-solid fa-shield text-primary"></i></div>
-              <h3 class="h5 fw-bold">Governance & Compliance</h3>
-              <p class="small-muted mb-0">NDPA-aligned governance: classification, RBAC, audits, and risk controls.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <div class="h4"><i class="fa-solid fa-chart-simple text-primary"></i></div>
-              <h3 class="h5 fw-bold">Analytics & BI</h3>
-              <p class="small-muted mb-0">Decision-ready dashboards and narrative insights using Power BI / Streamlit.</p>
-            </div>
+            <h5 class="fw-bold mb-2">Cloud Migration</h5>
+            <p class="service-short mb-0">
+              Secure, phased migration of data workloads with minimal downtime and risk.
+            </p>
           </div>
         </div>
       </div>
+
+      <!-- Data Pipelines -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft service-card"
+             data-bs-toggle="modal" data-bs-target="#svcPipelines">
+          <div class="card-body">
+            <div class="icon-chip mb-3">
+              <i class="fa-solid fa-diagram-project fa-lg service-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Data Pipelines</h5>
+            <p class="service-short mb-0">
+              Reliable batch and streaming pipelines with validation, retries, and monitoring.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Governance & Quality -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft service-card"
+             data-bs-toggle="modal" data-bs-target="#svcGovernance">
+          <div class="card-body">
+            <div class="icon-chip mb-3">
+              <i class="fa-solid fa-shield-halved fa-lg service-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Governance & Quality</h5>
+            <p class="service-short mb-0">
+              NDPA/GDPR-aligned governance, auditability, and trusted data quality controls.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics & BI (ADDED BACK) -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft service-card"
+             data-bs-toggle="modal" data-bs-target="#svcAnalytics">
+          <div class="card-body">
+            <div class="icon-chip mb-3">
+              <i class="fa-solid fa-chart-line fa-lg service-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Analytics & BI</h5>
+            <p class="service-short mb-0">
+              Dashboards, KPI layers, and insights that convert data into decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- API & Data Products (optional but professional) -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-soft service-card"
+             data-bs-toggle="modal" data-bs-target="#svcProducts">
+          <div class="card-body">
+            <div class="icon-chip mb-3">
+              <i class="fa-solid fa-code fa-lg service-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-2">APIs & Data Products</h5>
+            <p class="service-short mb-0">
+              Data APIs and reusable products to serve teams, apps, and stakeholders.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="page-section cta reveal">
+  <div class="container px-5 text-center">
+    <h4 class="fw-bold mb-3">
+      Need help designing, migrating, or governing your data platform?
+    </h4>
+    <p class="small-muted mb-4">
+      I work with teams to build reliable, compliant, and production-ready data systems.
+    </p>
+    <a href="#contact" class="btn btn-primary btn-xl">
+      Get in Touch
+    </a>
+  </div>
+</section>
+
+
 
   <!-- Projects / Case studies -->
   <section id="projects" class="py-5 bg-light reveal">
@@ -218,12 +440,14 @@
                 <span class="badge rounded-pill text-bg-primary">Governance</span>
                 <span class="project-meta small-muted">Utility sector</span>
               </div>
-              <h3 class="h5 fw-bold mt-3">Enterprise Data Governance & NDPA Compliance Framework</h3>
-              <p class="small-muted">Designed a comprehensive NDPA-aligned governance model: classification, RBAC, auditing, and risk controls.</p>
+              <h3 class="h5 fw-bold mt-3">Enterprise Data Governance & GDPA/NDPA Compliance Framework</h3>
+              <p class="small-muted">Designed a comprehensive GDPR/NDPA-aligned governance model: classification, RBAC, auditing, and risk controls.</p>
               <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#p1">View details</button>
             </div>
           </div>
         </div>
+
+
 
         <!-- 2 -->
         <div class="col-md-6 col-lg-4">
@@ -307,12 +531,14 @@
           <div class="card-body p-4 hover-lift">
             <h3 class="h6 fw-bold mb-2">Additional project</h3>
             <p class="mb-0 small-muted"><strong>Retail Sales Integration Pipeline (AWS S3 & Airbyte):</strong> consolidated multi-source retail data into S3 using Airbyte to enable scalable BI and analytics.</p>
+            <div class="mt-2 small"><i class="fa-solid fa-link text-primary me-1"></i><a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a></div>
           </div>
         </div>
       </div>
 
     </div>
   </section>
+  
 
   <!-- Architecture diagrams -->
   <section id="architecture" class="py-5 reveal">
@@ -353,7 +579,7 @@
         <div class="col-lg-6">
           <div class="card shadow-soft h-100 hover-lift">
             <div class="card-body p-4 hover-lift">
-              <h3 class="h6 fw-bold">NDPA Governance Framework</h3>
+              <h3 class="h6 fw-bold">GDPR/NDPA Governance Framework</h3>
               <img class="img-fluid img-diagram mt-2" src="assets/diagrams/ndpa_governance_framework.png" alt="NDPA Governance Framework" />
             </div>
           </div>
@@ -387,7 +613,7 @@
             <span class="badge rounded-pill badge-tech px-3 py-2">Power BI</span>
             <span class="badge rounded-pill badge-tech px-3 py-2">Streamlit</span>
             <span class="badge rounded-pill badge-tech px-3 py-2">NLP</span>
-            <span class="badge rounded-pill badge-tech px-3 py-2">Data Governance (NDPA-aligned)</span>
+            <span class="badge rounded-pill badge-tech px-3 py-2">Data Governance (GDPR-aligned)</span>
           </div>
         </div>
       </div>
@@ -397,47 +623,7 @@
       </div>
     </div>
   </section>
-
-  <!-- About -->
-  <section id="about" class="py-5 reveal">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-5">
-          <div class="card shadow-soft hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <h2 class="fw-bold mb-2">About</h2>
-              <p class="small-muted mb-0">
-                I’m a results-driven Data Engineer and Data Scientist focused on building enterprise-grade data systems.
-                I bridge technical execution with business strategy—delivering compliant governance, reliable pipelines, and decision-ready analytics.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="card shadow-soft cta hover-lift">
-            <div class="card-body p-4 hover-lift">
-              <h3 class="h5 fw-bold">Quick links</h3>
-              <div class="d-flex flex-wrap gap-2">
-                <a class="btn btn-outline-primary" href="https://github.com/asimiyu-musa" target="_blank" rel="noopener">
-                  <i class="fa-brands fa-github me-2"></i>GitHub
-                </a>
-                <a class="btn btn-outline-primary" href="#contact">
-                  <i class="fa-solid fa-envelope me-2"></i>Contact
-                </a>
-                <a class="btn btn-primary" href="#projects">
-                  <i class="fa-solid fa-layer-group me-2"></i>Case studies
-                </a>
-              </div>
-              <p class="small-muted mt-3 mb-0">
-                Tip: for GitHub Pages, place this <code>index.html</code> at your repo root (or <code>/docs</code>) and commit the <code>assets</code> folder.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  
   <!-- Contact -->
 <section id="contact" class="page-section reveal">
   <div class="container px-5">
@@ -518,49 +704,257 @@
   </div>
 </section>
 
+  <!-- About -->
+  <section id="about" class="py-5 reveal">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-5">
+          <div class="card shadow-soft hover-lift">
+            <div class="card-body p-4 hover-lift">
+              <h2 class="fw-bold mb-2">About</h2>
+              <p class="small-muted mb-0">
+                I’m a results-driven Data Engineer and Data Scientist focused on building enterprise-grade data systems.
+                I bridge technical execution with business strategy—delivering compliant governance, reliable pipelines, and decision-ready analytics.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="card shadow-soft cta hover-lift">
+            <div class="card-body p-4 hover-lift">
+              <h3 class="h5 fw-bold">Quick links</h3>
+              <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-outline-primary" href="https://github.com/asimiyu-musa" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-github me-2"></i>GitHub
+                </a>
+                <a class="btn btn-outline-primary" href="#contact">
+                  <i class="fa-solid fa-envelope me-2"></i>Contact
+                </a>
+                <a class="btn btn-primary" href="#projects">
+                  <i class="fa-solid fa-layer-group me-2"></i>Case studies
+                </a>
+              </div>
+              <p class="small-muted mt-3 mb-0">
+                
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 border-top bg-white">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div class="small-muted">© <span id="yr"></span> Asimiyu Musa. All rights reserved.</div>
+      <div class="d-flex gap-3 small">
+        <a class="link-accent" href="https://github.com/asimiyu-musa" target="_blank" rel="noopener"><i class="fa-brands fa-github me-1"></i>GitHub</a>
+        <a class="link-accent" href="#contact"><i class="fa-solid fa-envelope me-1"></i>Contact</a>
+      </div>
+    </div>
+  </footer>
+
 
   <!-- Modals -->
-  <div class="modal fade" id="p1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Enterprise Data Governance & NDPA Compliance Framework</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
+  <div class="modal fade" id="p1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Enterprise Data Governance & GDPR/NDPA Compliance Framework</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
     <p><strong>Problem:</strong> Utility organisations manage sensitive customer and operational data, but often lack governance aligned with NDPA and audit expectations.</p>
     <p><strong>Approach:</strong> Developed a comprehensive framework covering data classification, RBAC, audit logging, compliance workflows, and risk management tailored to utility operations.</p>
-    <p><strong>Technologies & Methods:</strong> Governance models, NDPA compliance mapping, access control design, audit and risk controls.</p>
+    <p><strong>Technologies & Methods:</strong> Governance models, GDPR compliance mapping, access control design, audit and risk controls.</p>
     <p class="mb-0"><strong>Outcome:</strong> Improved regulatory readiness, reduced data-handling risk, and established a scalable governance blueprint.</p>
-  </div></div></div></div>
+<hr>
+<div class="row g-3">
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Key challenges addressed</h6>
+    <ul class="mb-0">
+      <li>Unclear ownership of data domains and inconsistent handling of sensitive data</li>
+      <li>Limited auditability (who accessed what, when, and why)</li>
+      <li>Need for practical controls that fit utility operations (metering, billing, customer service)</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Deliverables</h6>
+    <ul class="mb-0">
+      <li>Data classification & handling standard (PII/PSI tagging)</li>
+      <li>RBAC model + access review process</li>
+      <li>Audit logging & monitoring design</li>
+      <li>Risk register template and compliance checklist</li>
+    </ul>
+  </div>
+</div>
+<div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-link text-primary"></i>
+    <strong>GitHub (placeholder):</strong>
+    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+  </div>
+</div>
+</div></div></div></div>
 
   <div class="modal fade" id="p2" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Big Data Application Migration (On‑Prem → Cloud)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
     <p><strong>Problem:</strong> On‑prem warehouses were expensive, rigid, and hard to scale for growth.</p>
     <p><strong>Approach:</strong> Designed a phased batch migration strategy with cutover planning to minimise downtime while optimising cost/performance.</p>
     <p><strong>Technologies:</strong> AWS / Azure / GCP building blocks (storage, compute), migration tooling, batch orchestration concepts.</p>
     <p class="mb-0"><strong>Outcome:</strong> Improved scalability and resilience, reduced infrastructure overhead, and enabled a cloud‑ready analytics foundation.</p>
-  </div></div></div></div>
+<hr>
+<div class="row g-3">
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Key challenges addressed</h6>
+    <ul class="mb-0">
+      <li>Reducing cutover risk while migrating large volumes of data</li>
+      <li>Preserving data quality, lineage, and security controls during transition</li>
+      <li>Balancing cloud cost vs performance (right-sizing and storage strategy)</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">What I delivered</h6>
+    <ul class="mb-0">
+      <li>Migration runbook (phases, dependencies, rollback plan)</li>
+      <li>Validation checks (row counts, reconciliation, sampling, schema drift)</li>
+      <li>Target architecture blueprint + operating model for the cloud</li>
+    </ul>
+  </div>
+</div>
+<div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-link text-primary"></i>
+    <strong>GitHub (placeholder):</strong>
+    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+  </div>
+</div>
+</div></div></div></div>
 
   <div class="modal fade" id="p3" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Big Data Processing & Quality Assurance Pipeline</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
     <p><strong>Problem:</strong> Inconsistent data quality created unreliable reporting and poor decision confidence.</p>
     <p><strong>Approach:</strong> Implemented profiling, quality checks, and automated validation rules embedded within processing workflows.</p>
     <p><strong>Technologies:</strong> Python, SQL, automated data testing concepts, quality metrics.</p>
     <p class="mb-0"><strong>Outcome:</strong> Increased trust in datasets, reduced downstream failures, and standardised quality controls.</p>
-  </div></div></div></div>
+<hr>
+<div class="row g-3">
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Quality controls implemented</h6>
+    <ul class="mb-0">
+      <li>Schema validation and drift detection</li>
+      <li>Uniqueness, completeness, and referential integrity checks</li>
+      <li>Threshold-based alerts for anomalies and missing data</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Outcome (example metrics)</h6>
+    <ul class="mb-0">
+      <li>Reduced data defects and rework through automated checks</li>
+      <li>Improved trust in downstream dashboards and reports</li>
+      <li>Reusable test suite for future pipelines</li>
+    </ul>
+  </div>
+</div>
+<div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-link text-primary"></i>
+    <strong>GitHub (placeholder):</strong>
+    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+  </div>
+</div>
+</div></div></div></div>
 
   <div class="modal fade" id="p4" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Auto‑Intel: Automated Data Intelligence Platform</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
     <p><strong>Problem:</strong> Manual collection and analysis slowed market intelligence and reduced insight timeliness.</p>
     <p><strong>Approach:</strong> Built an automated platform integrating scraping, validation, transformation, orchestration, API delivery, NLP insights, and dashboards.</p>
     <p><strong>Technologies:</strong> Python, Scrapy, PostgreSQL, Apache Airflow, NLP, Streamlit / BI tooling.</p>
     <p class="mb-0"><strong>Outcome:</strong> End‑to‑end automation improved insight velocity, reliability, and scalability for analytics users.</p>
-  </div></div></div></div>
+<hr>
+<div class="row g-3">
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Platform capabilities</h6>
+    <ul class="mb-0">
+      <li>Scraping and structured extraction with validation</li>
+      <li>Automated orchestration (scheduling, retries, logging)</li>
+      <li>PostgreSQL storage + analytics views</li>
+      <li>NLP features (sentiment, topics/keywords) for insights</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Business outcomes</h6>
+    <ul class="mb-0">
+      <li>Faster insight turnaround vs manual research</li>
+      <li>Consistent datasets for dashboards and reporting</li>
+      <li>Extensible architecture: add sources, models, and KPIs</li>
+    </ul>
+  </div>
+</div>
+<div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-link text-primary"></i>
+    <strong>GitHub (placeholder):</strong>
+    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+  </div>
+</div>
+</div></div></div></div>
 
   <div class="modal fade" id="p5" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">End‑to‑End Streaming Pipeline (Kafka & Airflow)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
     <p><strong>Problem:</strong> Batch processing couldn’t meet near real-time analytics requirements.</p>
     <p><strong>Approach:</strong> Engineered a streaming pipeline for ingestion and processing of high-volume events, prepared for visualisation and reporting.</p>
     <p><strong>Technologies:</strong> Apache Kafka, Apache Airflow, Python.</p>
     <p class="mb-0"><strong>Outcome:</strong> Enabled timely analytics and operational responsiveness with scalable event-driven architecture.</p>
-  </div></div></div></div>
+<hr>
+<div class="row g-3">
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">What the pipeline handles</h6>
+    <ul class="mb-0">
+      <li>High-volume event ingestion (producers → Kafka topics)</li>
+      <li>Consumer processing with schema discipline and retries</li>
+      <li>Batch orchestration where needed (Airflow coordination)</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Reliability features</h6>
+    <ul class="mb-0">
+      <li>Idempotent processing patterns</li>
+      <li>Dead-letter handling (where applicable)</li>
+      <li>Monitoring hooks for lag and processing failures</li>
+    </ul>
+  </div>
+</div>
+<div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-link text-primary"></i>
+    <strong>GitHub (placeholder):</strong>
+    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+  </div>
+</div>
+</div></div></div></div>
 
   <div class="modal fade" id="p6" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Real Estate Property Records ETL (PostgreSQL)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
     <p><strong>Problem:</strong> Property records were siloed and hard to query consistently.</p>
     <p><strong>Approach:</strong> Built an ETL pipeline to standardise, transform, and load property datasets into PostgreSQL with analytics-friendly structure.</p>
     <p><strong>Technologies:</strong> Python, PostgreSQL, SQL optimisation.</p>
     <p class="mb-0"><strong>Outcome:</strong> Streamlined access, faster reporting, and improved data usability for downstream applications.</p>
-  </div></div></div></div>
+<hr>
+<div class="row g-3">
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Pipeline design</h6>
+    <ul class="mb-0">
+      <li>Standardisation of fields (types, formats, null handling)</li>
+      <li>De-duplication and integrity constraints in PostgreSQL</li>
+      <li>Analytics-friendly schema for reporting and downstream tools</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h6 class="fw-bold mb-2">Outcome</h6>
+    <ul class="mb-0">
+      <li>Consistent, queryable dataset for property insights</li>
+      <li>Improved performance through indexing and optimised queries</li>
+      <li>Clear transformation logic for maintainability</li>
+    </ul>
+  </div>
+</div>
+<div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
+  <div class="d-flex align-items-center gap-2">
+    <i class="fa-solid fa-link text-primary"></i>
+    <strong>GitHub (placeholder):</strong>
+    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+  </div>
+</div>
+</div></div></div></div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -585,6 +979,230 @@
     els.forEach(el=>obs.observe(el));
   })();
 </script>
+<!-- SERVICES MODALS -->
+
+<!-- Data Platforms Modal -->
+<div class="modal fade" id="svcPlatforms" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">Data Platforms</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3">
+          I design and build scalable data platforms that make analytics and reporting reliable,
+          fast, and maintainable — from ingestion to consumption layers.
+        </p>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">What I deliver</h6>
+          <ul class="mb-0">
+            <li>Warehouse / lakehouse design and modelling</li>
+            <li>Analytics-ready schemas and semantic layers</li>
+            <li>Performance optimisation (partitioning, indexing, query tuning)</li>
+            <li>Governed environments (access patterns, environments, documentation)</li>
+          </ul>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h6 class="fw-bold mb-2">Typical use cases</h6>
+            <ul class="mb-0">
+              <li>Executive KPI reporting</li>
+              <li>Operations dashboards</li>
+              <li>Customer / revenue analytics</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6 class="fw-bold mb-2">Tools</h6>
+            <ul class="mb-0">
+              <li>PostgreSQL • SQL • Python</li>
+              <li>AWS / Azure / GCP</li>
+              <li>Power BI / Streamlit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cloud Migration Modal -->
+<div class="modal fade" id="svcCloud" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">Cloud Migration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3">
+          I migrate data workloads from on-prem or legacy systems to cloud platforms using
+          a phased approach that controls risk and protects data quality.
+        </p>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">What I deliver</h6>
+          <ul class="mb-0">
+            <li>Migration plan & runbook (phases, dependencies, rollback)</li>
+            <li>Target cloud architecture blueprint</li>
+            <li>Validation & reconciliation checks (counts, sampling, schema drift)</li>
+            <li>Cost/performance optimisation (storage, compute, right-sizing)</li>
+          </ul>
+        </div>
+
+        <h6 class="fw-bold mb-2">Tools</h6>
+        <ul class="mb-0">
+          <li>AWS / Azure / GCP • Cloud storage & compute</li>
+          <li>ETL/ELT tooling • Monitoring & logging</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Data Pipelines Modal -->
+<div class="modal fade" id="svcPipelines" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">Data Pipelines (Batch & Streaming)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3">
+          I engineer reliable pipelines that move and transform data for analytics and products —
+          with strong validation, monitoring, and fault-tolerant patterns.
+        </p>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">Batch pipelines</h6>
+          <ul class="mb-0">
+            <li>ETL/ELT design with orchestration (scheduling, retries, alerts)</li>
+            <li>Data quality checks (nulls, duplicates, constraints, reconciliation)</li>
+            <li>Schema management and transformation logic</li>
+          </ul>
+        </div>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">Streaming pipelines</h6>
+          <ul class="mb-0">
+            <li>Kafka topic design, producers/consumers</li>
+            <li>Idempotent processing and recovery patterns</li>
+            <li>Monitoring lag, failures, and delivery guarantees</li>
+          </ul>
+        </div>
+
+        <h6 class="fw-bold mb-2">Tools</h6>
+        <ul class="mb-0">
+          <li>Airflow • Kafka • Python • SQL</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Governance & Quality Modal -->
+<div class="modal fade" id="svcGovernance" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">Governance & Quality</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3">
+          I implement governance and quality controls that make data compliant, auditable,
+          and trusted across teams — aligned with NDPA/GDPR principles.
+        </p>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">What I deliver</h6>
+          <ul class="mb-0">
+            <li>Data classification and handling standards</li>
+            <li>RBAC and access review processes</li>
+            <li>Audit logging and monitoring patterns</li>
+            <li>Quality rules, thresholds, and anomaly detection</li>
+          </ul>
+        </div>
+
+        <h6 class="fw-bold mb-2">Best for</h6>
+        <ul class="mb-0">
+          <li>Regulatory readiness</li>
+          <li>Reducing data risk</li>
+          <li>Improving trust in dashboards and analytics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Analytics & BI Modal -->
+<div class="modal fade" id="svcAnalytics" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">Analytics & BI</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3">
+          I translate data into decision-ready insights through KPI design, dashboards,
+          and stakeholder-friendly reporting layers.
+        </p>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">What I deliver</h6>
+          <ul class="mb-0">
+            <li>KPI definitions and metrics layer</li>
+            <li>Power BI dashboards and executive reporting</li>
+            <li>Data storytelling: trends, drivers, and recommendations</li>
+            <li>Refresh performance and reliability improvements</li>
+          </ul>
+        </div>
+
+        <h6 class="fw-bold mb-2">Tools</h6>
+        <ul class="mb-0">
+          <li>Power BI • SQL • Python • Streamlit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APIs & Data Products Modal -->
+<div class="modal fade" id="svcProducts" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">APIs & Data Products</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3">
+          I build reusable data products and APIs that serve reliable datasets to teams,
+          dashboards, and applications.
+        </p>
+
+        <div class="service-modal-box mb-3">
+          <h6 class="fw-bold mb-2">What I deliver</h6>
+          <ul class="mb-0">
+            <li>REST APIs for analytics datasets</li>
+            <li>Reusable data models and curated tables</li>
+            <li>Documentation and usage guidance</li>
+            <li>Authentication patterns and access control (where required)</li>
+          </ul>
+        </div>
+
+        <h6 class="fw-bold mb-2">Tools</h6>
+        <ul class="mb-0">
+          <li>Python • FastAPI • PostgreSQL</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
