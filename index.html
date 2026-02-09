@@ -464,7 +464,7 @@
                 <span class="badge rounded-pill text-bg-primary">Cloud</span>
                 <span class="project-meta small-muted">Batch migration</span>
               </div>
-              <h3 class="h5 fw-bold mt-3">Big Data Application Migration (On‑Prem → Cloud)</h3>
+              <h3 class="h5 fw-bold mt-3">Event-Driven Stock Market Data Pipeline (On-Prem → AWS Cloud)</h3>
               <p class="small-muted">Phased migration strategy optimised for cost, performance, and minimal downtime.</p>
               <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#p2">View details</button>
             </div>
@@ -506,11 +506,11 @@
           <div class="card h-100 shadow-soft hover-lift">
             <div class="card-body p-4 hover-lift">
               <div class="d-flex justify-content-between">
-                <span class="badge rounded-pill text-bg-primary">Streaming</span>
-                <span class="project-meta small-muted">Kafka + Airflow</span>
+                <span class="badge rounded-pill text-bg-primary">BI & Assessment</span>
+                <span class="project-meta small-muted">Streamlit + Airflow</span>
               </div>
-              <h3 class="h5 fw-bold mt-3">End‑to‑End Streaming Pipeline (Kafka & Airflow)</h3>
-              <p class="small-muted">Real-time ingestion and processing for timely reporting and operational analytics.</p>
+              <h3 class="h5 fw-bold mt-3">Rural Water Quality Assessment</h3>
+              <p class="small-muted">Data-driven platform that integrates environmental, geospatial, and chemical datasets to assess, visualise, and predict rural water quality risks through an automated ETL pipeline and interactive dashboard.</p>
               <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#p5">View details</button>
             </div>
           </div>
@@ -765,32 +765,39 @@
 <div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
   <div class="d-flex align-items-center gap-2">
     <i class="fa-solid fa-link text-primary"></i>
-    <strong>GitHub (placeholder):</strong>
-    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+    <strong>GitHub:</strong>
+    <a class="link-accent" href="https://github.com/asimiyu-musa/Enterprise-Data-Governance-GDPR-NDPA-Compliance-Framework/blob/main/README.md" target="_blank" rel="noopener">View project repository</a>
   </div>
 </div>
 </div></div></div></div>
 
   <div class="modal fade" id="p2" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Big Data Application Migration (On‑Prem → Cloud)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
-    <p><strong>Problem:</strong> On‑prem warehouses were expensive, rigid, and hard to scale for growth.</p>
-    <p><strong>Approach:</strong> Designed a phased batch migration strategy with cutover planning to minimise downtime while optimising cost/performance.</p>
-    <p><strong>Technologies:</strong> AWS / Azure / GCP building blocks (storage, compute), migration tooling, batch orchestration concepts.</p>
+    <p><strong>Problem:</strong> Large volumes of historical stock market data stored as CSV files on on-premises systems often require manual handling and lack automated, consistent processing workflows. This creates inefficiencies in ingestion, transformation, and storage, making it difficult to reliably prepare data for analysis in a scalable cloud environment.</p>
+    <p><strong>Approach:</strong> An event-driven ETL pipeline was designed using AWS services and Apache Airflow to automate the ingestion, processing, and loading of stock CSV files into a cloud-hosted PostgreSQL database. File uploads to Amazon S3 trigger automated workflow execution, where data is consolidated, transformed using Python, and monitored through integrated alerting mechanisms.</p>
+    <p><strong>Technologies:</strong> AWS EC2, S3, Amazon RDS, AWS Lambda, AWS SNS, Python(Pandas), Bash Scripting and S3FS-Fuse, Apache Airflow, Docker.</p>
     <p class="mb-0"><strong>Outcome:</strong> Improved scalability and resilience, reduced infrastructure overhead, and enabled a cloud‑ready analytics foundation.</p>
 <hr>
 <div class="row g-3">
   <div class="col-md-6">
     <h6 class="fw-bold mb-2">Key challenges addressed</h6>
     <ul class="mb-0">
-      <li>Reducing cutover risk while migrating large volumes of data</li>
-      <li>Preserving data quality, lineage, and security controls during transition</li>
-      <li>Balancing cloud cost vs performance (right-sizing and storage strategy)</li>
+      <li>Automating ingestion of up to 100000 CSV files per batch run</li>
+      <li>Designing an event-driven execution model without manual triggers</li>
+      <li>Coordinating multiple AWS services into a single workflow</li>
+      <li>Ensuring consistent processing and transformation across large datasets</li>
+      <li>Managing orchestration reliability using Airflow</li>
+      <li>Building monitoring mechanisms to track pipeline success and failures</li>
     </ul>
   </div>
   <div class="col-md-6">
     <h6 class="fw-bold mb-2">What I delivered</h6>
     <ul class="mb-0">
-      <li>Migration runbook (phases, dependencies, rollback plan)</li>
-      <li>Validation checks (row counts, reconciliation, sampling, schema drift)</li>
+      <li>A fully automated, event-driven ETL pipeline for processing historical stock market data</li>
+      <li>A Dockerised Apache Airflow deployment running on AWS EC2</li>
+      <li>A batch processing framework that consolidates multiple CSV files into a unified dataset</li>
+      <li>A PostgreSQL data store on Amazon RDS for structured and queryable output</li>
+      <li>A Lambda-triggered automation model for pipeline execution</li>
+      <li>SNS-based monitoring and alerting for operational visibility</li>
       <li>Target architecture blueprint + operating model for the cloud</li>
     </ul>
   </div>
@@ -798,8 +805,8 @@
 <div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
   <div class="d-flex align-items-center gap-2">
     <i class="fa-solid fa-link text-primary"></i>
-    <strong>GitHub (placeholder):</strong>
-    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+    <strong>GitHub:</strong>
+    <a class="link-accent" href="https://github.com/asimiyu-musa/Big-Data-Application-Migration-On-Prem-Cloud-/blob/main/README.md" target="_blank" rel="noopener">View project repository</a>
   </div>
 </div>
 </div></div></div></div>
@@ -865,41 +872,45 @@
 <div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
   <div class="d-flex align-items-center gap-2">
     <i class="fa-solid fa-link text-primary"></i>
-    <strong>GitHub (placeholder):</strong>
-    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+    <strong>GitHub:</strong>
+    <a class="link-accent" href="https://github.com/asimiyu-musa/auto-intel-project" target="_blank" rel="noopener">View project repository</a>
   </div>
 </div>
 </div></div></div></div>
 
-  <div class="modal fade" id="p5" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">End‑to‑End Streaming Pipeline (Kafka & Airflow)</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
-    <p><strong>Problem:</strong> Batch processing couldn’t meet near real-time analytics requirements.</p>
-    <p><strong>Approach:</strong> Engineered a streaming pipeline for ingestion and processing of high-volume events, prepared for visualisation and reporting.</p>
-    <p><strong>Technologies:</strong> Apache Kafka, Apache Airflow, Python.</p>
+  <div class="modal fade" id="p5" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Rural Water Quality Assessment</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">
+    <p><strong>Problem:</strong> Rural catchment areas often rely on periodic physical sampling to assess water quality, which is resource-intensive, slow, and can miss early signs of contamination. There is a need for a data-driven system that can use environmental, settlement, and chemical indicators to help identify potential water quality risks before field sampling takes place..</p>
+    <p><strong>Approach:</strong> A data platform was developed to integrate geospatial, settlement, and physico-chemical water quality data into a structured ETL pipeline, with curated outputs visualised through an interactive Streamlit dashboard. The system enables exploration of historical trends, comparison of chemical levels, and basic predictive assessment of water suitability to support early decision-making for municipalities and environmental stakeholders.</p>
+    <p><strong>Technologies:</strong> Python (Pandas, NumPy), Apache Airflow, AWS S3, Streamlit, AWS EC2, AWS RDS, Docker.</p>
     <p class="mb-0"><strong>Outcome:</strong> Enabled timely analytics and operational responsiveness with scalable event-driven architecture.</p>
 <hr>
 <div class="row g-3">
   <div class="col-md-6">
-    <h6 class="fw-bold mb-2">What the pipeline handles</h6>
+    <h6 class="fw-bold mb-2">Key Challenges Addressed</h6>
     <ul class="mb-0">
-      <li>High-volume event ingestion (producers → Kafka topics)</li>
-      <li>Consumer processing with schema discipline and retries</li>
-      <li>Batch orchestration where needed (Airflow coordination)</li>
+      <li>Integrating diverse datasets including geospatial, population, and chemical measurements</li>
+      <li>Handling inconsistencies and quality issues in historical environmental data</li>
+      <li>Designing a structured ETL pipeline from raw data lake to analytics-ready warehouse</li>
+      <li>Presenting complex environmental insights in a user-friendly, interactive format</li>
+      <li>Supporting early risk identification for rural water safety</li>
     </ul>
   </div>
   <div class="col-md-6">
-    <h6 class="fw-bold mb-2">Reliability features</h6>
+    <h6 class="fw-bold mb-2">What we Delivered</h6>
     <ul class="mb-0">
-      <li>Idempotent processing patterns</li>
-      <li>Dead-letter handling (where applicable)</li>
-      <li>Monitoring hooks for lag and processing failures</li>
+      <li>A complete ETL pipeline for ingesting, cleaning, and structuring rural water quality datasets</li>
+      <li>A curated data warehouse supporting analysis of catchment conditions and trends</li>
+      <li>An interactive Streamlit dashboard with filtering, mapping, and comparison visualisations</li>
+      <li>A predictive assessment interface for evaluating water suitability based on chemical parameters</li>
+      <li>A data-driven decision-support tool aligned with environmental monitoring and public health use cases</li>
     </ul>
   </div>
 </div>
 <div class="mt-3 p-3 rounded-4" style="background: rgba(26,188,156,.08); border:1px solid rgba(44,62,80,.10);">
   <div class="d-flex align-items-center gap-2">
     <i class="fa-solid fa-link text-primary"></i>
-    <strong>GitHub (placeholder):</strong>
-    <a class="link-accent" href="YOUR_GITHUB_REPO_LINK" target="_blank" rel="noopener">View project repository</a>
+    <strong>GitHub:</strong>
+    <a class="link-accent" href="https://github.com/asimiyu-musa/Rural-Water-Quality-Assessment-/edit/main/README.md" target="_blank" rel="noopener">View project repository</a>
   </div>
 </div>
 </div></div></div></div>
